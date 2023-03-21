@@ -92,8 +92,8 @@ function RenderLandingPage(props) {
         {/* Bottom Section: Add code here for the graphs section for your first ticket */}
         <div className="bottom-section">
           <h1>Semantic Disparity Insights</h1>
-          <div className="bottom-section-container">
-            <div className="bottom-container">
+          <div className="bottom-sections-container">
+            <div className="bottom-section-container">
               <h2>36%</h2>
               <h3>
                 By the end of the Trump administration, the average asylum
@@ -102,14 +102,14 @@ function RenderLandingPage(props) {
                 2020.
               </h3>
             </div>
-            <div className="bottom-container">
+            <div className="bottom-section-container">
               <h2>5%</h2>
               <h3>
                 The New York asylum office grant rate dropped to 5 percent in
                 fiscal year 2020.
               </h3>
             </div>
-            <div className="bottom-container">
+            <div className="bottom-section-container">
               <h2>6x Lower</h2>
               <h3>
                 Between fiscal year 2017 and 2020, the New York asylum office's

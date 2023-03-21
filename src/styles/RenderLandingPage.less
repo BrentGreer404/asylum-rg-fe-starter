@@ -41,13 +41,13 @@
     font-size: 1.2rem;
 }
 
-.graphs-section {
+.graphs-section { //Container for all of the graphs
     display: flex;
     justify-content: space-evenly;
 }
 
 
-.graphs-section-container {
+.graphs-section-container { //Container for each graph and its accompanying text
     width: 18vw;
     display: flex;
     flex-direction: column;
@@ -55,7 +55,7 @@
 }
 
 
-.graphs-section-img-container {
+.graphs-section-img-container { //Container for the graph image, used to center the images and make them equal heights
     height: 20vh;
     display: flex;
     align-items: center;
@@ -112,35 +112,40 @@
     font-size: 1.4rem;
 }
 
-.bottom-section {
+.bottom-section { //Containter for all of the elements in the bottom section
     margin-top: 10%;
     display: flex;
     flex-direction: column;
     font-size: 3rem;
-    font-family: "moneta";
     align-items: center;
+}
+
+.bottom-section h1 {
+    font-size: 3.2rem;
+    font-family: "moneta";
 }
 
 .bottom-section button {
     margin-top: 5%;
-    font-family: "moneta";
+    // font-family: 'beatrice regular';
 }
 
-.bottom-section-container {
+.bottom-sections-container { //Container for each element in the bottom section
     width: 100%;
     display: flex;
     justify-content: space-evenly;
     margin-top: 5%;
-    
     text-align: center;
+    font-family: "moneta";
 }
 
 
 .bottom-section h2 {
+    font-family: "moneta";
     font-size: 3rem;
 }
 
-.bottom-container {
+.bottom-section-container {
     width: 20vw;
     font-size: 1rem;
 }
