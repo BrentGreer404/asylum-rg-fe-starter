@@ -10,12 +10,13 @@ import YearLimitsSelect from './YearLimitsSelect';
 import ViewSelect from './ViewSelect';
 import axios from 'axios';
 import { resetVisualizationQuery } from '../../../state/actionCreators';
-import { URL } from '../../../data/url';
+import { fiscalEndpoint, citizenEndpoint } from '../../../data/endpoints';
 import test_data from '../../../data/test_data.json';
 import { colors } from '../../../styles/data_vis_colors';
 import ScrollToTopOnMount from '../../../utils/scrollToTopOnMount';
 
 const { background_color } = colors;
+let endpoint = fiscalEndpoint;
 
 function GraphWrapper(props) {
   const { set_view, dispatch } = props;
@@ -52,61 +53,45 @@ function GraphWrapper(props) {
     }
   }
   function updateStateWithNewData(years, view, office, stateSettingCallback) {
-    /*
-          _                                                                             _
-        |                                                                                 |
-        |   Example request for once the `/summary` endpoint is up and running:           |
-        |                                                                                 |
-        |     `${url}/summary?to=2022&from=2015&office=ZLA`                               |
-        |                                                                                 |
-        |     so in axios we will say:                                                    |
-        |                                                                                 |     
-        |       axios.get(`${url}/summary`, {                                             |
-        |         params: {                                                               |
-        |           from: <year_start>,                                                   |
-        |           to: <year_end>,                                                       |
-        |           office: <office>,       [ <-- this one is optional! when    ]         |
-        |         },                        [ querying by `all offices` there's ]         |
-        |       })                          [ no `office` param in the query    ]         |
-        |                                                                                 |
-          _                                                                             _
-                                   -- Mack 
-    
-    */
+    // Removed second axios call. since the only difference was the params, I set a params variable instead
+
+    let params = {
+      from: years[0],
+      to: years[1],
+      office: office,
+    };
 
     if (office === 'all' || !office) {
-      axios
-        .get(URL + '/fiscalSummary', {
-          // mock URL, can be simply replaced by `${Real_Production_URL}/summary` in prod!
-          params: {
-            from: years[0],
-            to: years[1],
-          },
-        })
-        .then(result => {
-          console.log(result.data);
-          stateSettingCallback(view, office, result.data); // <-- `test_data` here can be simply replaced by `result.data` in prod!
-        })
-        .catch(err => {
-          console.error(err);
-        });
-    } else {
-      axios
-        .get(URL + '/fiscalSummary', {
-          // mock URL, can be simply replaced by `${Real_Production_URL}/summary` in prod!
-          params: {
-            from: years[0],
-            to: years[1],
-            office: office,
-          },
-        })
-        .then(result => {
-          stateSettingCallback(view, office, result.data); // <-- `test_data` here can be simply replaced by `result.data` in prod!
-        })
-        .catch(err => {
-          console.error(err);
-        });
+      params = {
+        from: years[0],
+        to: years[1],
+      };
     }
+
+    let data = [];
+
+    axios
+      .get(fiscalEndpoint, {
+        params: params,
+      })
+      .then(result => {
+        data.push(result.data);
+      })
+      .catch(err => {
+        console.error(err);
+      });
+
+    axios
+      .get(citizenEndpoint, {
+        params: params,
+      })
+      .then(result => {
+        data.push(result.data);
+        stateSettingCallback(view, office, data);
+      })
+      .catch(err => {
+        console.error(err);
+      });
   }
   const clearQuery = (view, office) => {
     dispatch(resetVisualizationQuery(view, office));
