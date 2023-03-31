@@ -16,7 +16,6 @@ import { colors } from '../../../styles/data_vis_colors';
 import ScrollToTopOnMount from '../../../utils/scrollToTopOnMount';
 
 const { background_color } = colors;
-let endpoint = fiscalEndpoint;
 
 function GraphWrapper(props) {
   const { set_view, dispatch } = props;
@@ -52,6 +51,7 @@ function GraphWrapper(props) {
         break;
     }
   }
+
   function updateStateWithNewData(years, view, office, stateSettingCallback) {
     // Removed second axios call. since the only difference was the params, I set a params variable instead
 
@@ -120,6 +120,7 @@ function GraphWrapper(props) {
         }}
       >
         <ViewSelect set_view={set_view} />
+        {view !== 'citizenship'}
         <YearLimitsSelect
           view={view}
           office={office}
