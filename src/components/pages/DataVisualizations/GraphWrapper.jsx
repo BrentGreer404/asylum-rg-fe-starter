@@ -15,6 +15,8 @@ import test_data from '../../../data/test_data.json';
 import { colors } from '../../../styles/data_vis_colors';
 import ScrollToTopOnMount from '../../../utils/scrollToTopOnMount';
 
+let state = [];
+
 const { background_color } = colors;
 
 function GraphWrapper(props) {
@@ -68,30 +70,34 @@ function GraphWrapper(props) {
       };
     }
 
-    let data = [];
+    let data = state;
 
-    axios
-      .get(fiscalEndpoint, {
-        params: params,
-      })
-      .then(result => {
-        data.push(result.data);
-      })
-      .catch(err => {
-        console.error(err);
-      });
+    if (!data.length) {
+      axios
+        .get(fiscalEndpoint, {
+          params: params,
+        })
+        .then(result => {
+          data.push(result.data);
+        })
+        .catch(err => {
+          console.error(err);
+        });
 
-    axios
-      .get(citizenEndpoint, {
-        params: params,
-      })
-      .then(result => {
-        data.push(result.data);
-        stateSettingCallback(view, office, data);
-      })
-      .catch(err => {
-        console.error(err);
-      });
+      axios
+        .get(citizenEndpoint, {
+          params: params,
+        })
+        .then(result => {
+          data.push(result.data);
+          stateSettingCallback(view, office, data);
+        })
+        .catch(err => {
+          console.error(err);
+        });
+    } else {
+      stateSettingCallback(view, office, data);
+    }
   }
   const clearQuery = (view, office) => {
     dispatch(resetVisualizationQuery(view, office));
