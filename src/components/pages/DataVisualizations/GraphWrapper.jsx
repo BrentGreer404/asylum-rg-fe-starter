@@ -15,7 +15,7 @@ import test_data from '../../../data/test_data.json';
 import { colors } from '../../../styles/data_vis_colors';
 import ScrollToTopOnMount from '../../../utils/scrollToTopOnMount';
 
-let state = [];
+let data = [];
 
 const { background_color } = colors;
 
@@ -69,8 +69,6 @@ function GraphWrapper(props) {
         to: years[1],
       };
     }
-
-    let data = state;
 
     if (!data.length) {
       axios
