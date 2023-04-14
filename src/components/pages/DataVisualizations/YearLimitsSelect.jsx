@@ -93,7 +93,7 @@ function YearLimitsSelect(props) {
         office={office}
         view={view}
         lowerLimit={2015}
-        upperLimit={2023}
+        upperLimit={2022}
         step={1}
       />
       <Form

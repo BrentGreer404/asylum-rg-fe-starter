@@ -15,6 +15,7 @@ const rawApiDataToPlotlyReadyInfo = (view, office, data) => {
   let rowsForTable;
 
   function perc(total, amt) {
+    //Simple function return precentage to 2 decimals
     return ((amt / total) * 100).toFixed(2);
   }
 
