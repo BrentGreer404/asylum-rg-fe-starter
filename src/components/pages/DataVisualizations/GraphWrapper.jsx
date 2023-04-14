@@ -15,9 +15,8 @@ import test_data from '../../../data/test_data.json';
 import { colors } from '../../../styles/data_vis_colors';
 import ScrollToTopOnMount from '../../../utils/scrollToTopOnMount';
 
-let data = [];
-
 const { background_color } = colors;
+let data = [];
 
 function GraphWrapper(props) {
   const { set_view, dispatch } = props;
@@ -26,7 +25,9 @@ function GraphWrapper(props) {
     set_view('time-series');
     view = 'time-series';
   }
+
   let map_to_render;
+
   if (!office) {
     switch (view) {
       case 'time-series':
@@ -55,8 +56,6 @@ function GraphWrapper(props) {
   }
 
   function updateStateWithNewData(years, view, office, stateSettingCallback) {
-    // Removed second axios call. since the only difference was the params, I set a params variable instead
-
     let params = {
       from: years[0],
       to: years[1],
@@ -97,6 +96,7 @@ function GraphWrapper(props) {
       stateSettingCallback(view, office, data);
     }
   }
+
   const clearQuery = (view, office) => {
     dispatch(resetVisualizationQuery(view, office));
   };
