@@ -16,7 +16,6 @@ import { colors } from '../../../styles/data_vis_colors';
 import ScrollToTopOnMount from '../../../utils/scrollToTopOnMount';
 
 const { background_color } = colors;
-let data = [];
 
 function GraphWrapper(props) {
   const { set_view, dispatch } = props;
@@ -56,6 +55,8 @@ function GraphWrapper(props) {
   }
 
   function updateStateWithNewData(years, view, office, stateSettingCallback) {
+    let data = [];
+
     let params = {
       from: years[0],
       to: years[1],
@@ -69,32 +70,28 @@ function GraphWrapper(props) {
       };
     }
 
-    if (!data.length) {
-      axios
-        .get(fiscalEndpoint, {
-          params: params,
-        })
-        .then(result => {
-          data.push(result.data);
-        })
-        .catch(err => {
-          console.error(err);
-        });
+    axios
+      .get(fiscalEndpoint, {
+        params: params,
+      })
+      .then(result => {
+        data.push(result.data);
+      })
+      .catch(err => {
+        console.error(err);
+      });
 
-      axios
-        .get(citizenEndpoint, {
-          params: params,
-        })
-        .then(result => {
-          data.push(result.data);
-          stateSettingCallback(view, office, data);
-        })
-        .catch(err => {
-          console.error(err);
-        });
-    } else {
-      stateSettingCallback(view, office, data);
-    }
+    axios
+      .get(citizenEndpoint, {
+        params: params,
+      })
+      .then(result => {
+        data.push(result.data);
+        stateSettingCallback(view, office, data);
+      })
+      .catch(err => {
+        console.error(err);
+      });
   }
 
   const clearQuery = (view, office) => {

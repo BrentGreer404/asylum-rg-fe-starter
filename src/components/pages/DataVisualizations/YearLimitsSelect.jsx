@@ -168,6 +168,9 @@ function YearLimitsSelect(props) {
               marginLeft: '105px',
               marginTop: '10px',
             }}
+            onClick={() => {
+              updateStateWithNewData(years, view, office, stateSettingFn);
+            }}
           >
             Update Query
           </Button>
