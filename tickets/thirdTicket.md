@@ -36,3 +36,10 @@ Submit the following in your course:
 
 - Link to your forked repo with the code for the new profile page and auth integration
 - Link to a Loom video answering the prompt in the `Submit Your Deliverables` assignment in your course
+
+## Notes
+
+1. Add Profile page
+Created User page under pages/Profile/index.js
+Added profile page link to Header.jsx
+added route to profile page in src/index.js

@@ -22,6 +22,12 @@ function HeaderContent() {
         </a>
       </div>
       <div>
+        <Link to="/user" style={{ color: '#E2F0F7', paddingRight: '75px' }}>
+          Log In
+        </Link>
+        <Link to="/profile" style={{ color: '#E2F0F7', paddingRight: '75px' }}>
+          Profile Page
+        </Link>
         <Link to="/" style={{ color: '#E2F0F7', paddingRight: '75px' }}>
           Home
         </Link>
