@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 
 export const LinkWithAuth = ({ ...props }) => {
@@ -9,7 +9,7 @@ export const LinkWithAuth = ({ ...props }) => {
 export const LogInOut = ({ ...props }) => {
   const { loginWithPopup, logout, isAuthenticated } = useAuth0();
   return isAuthenticated ? (
-    <Link {...props} onClick={() => logout()}>
+    <Link {...props} to="/" onClick={() => logout()}>
       Log Out
     </Link>
   ) : (
