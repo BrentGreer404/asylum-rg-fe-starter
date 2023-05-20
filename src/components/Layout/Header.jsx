@@ -1,6 +1,7 @@
 import React from 'react';
 import { Image } from 'antd';
 import { Link } from 'react-router-dom';
+import { LinkWithAuth, LogInOut } from '../common/AuthLinks';
 import Logo from '../../styles/Images/WhiteLogo.png';
 import { colors } from '../../styles/data_vis_colors';
 
@@ -22,12 +23,16 @@ function HeaderContent() {
         </a>
       </div>
       <div>
-        <Link to="/user" style={{ color: '#E2F0F7', paddingRight: '75px' }}>
-          Log In
-        </Link>
-        <Link to="/profile" style={{ color: '#E2F0F7', paddingRight: '75px' }}>
-          Profile Page
-        </Link>
+        <LogInOut
+          to="/"
+          style={{ color: '#E2F0F7', paddingRight: '75px' }}
+        ></LogInOut>
+        <LinkWithAuth
+          to="/profile"
+          style={{ color: '#E2F0F7', paddingRight: '75px' }}
+        >
+          Profile
+        </LinkWithAuth>
         <Link to="/" style={{ color: '#E2F0F7', paddingRight: '75px' }}>
           Home
         </Link>

@@ -43,3 +43,9 @@ Submit the following in your course:
 Created User page under pages/Profile/index.js
 Added profile page link to Header.jsx
 added route to profile page in src/index.js
+
+2. Implement 0Auth
+Created config file auth0-provider-with-history.js
+Wrapped App in src/index.js with above
+Created custom links with auth for profile and login/out
+Implemented Auth0 user object in profile page
