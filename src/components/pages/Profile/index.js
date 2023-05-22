@@ -1,8 +1,7 @@
 import { useAuth0 } from '@auth0/auth0-react';
 
-export function UserPage() {
+export function ProfilePage() {
   const { user } = useAuth0();
-  console.log(user);
   const { name, email, picture } = user;
   return (
     <div style={{ margin: 'auto', padding: '5%' }}>
