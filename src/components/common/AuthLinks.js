@@ -1,11 +1,11 @@
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 
 export const LinkWithAuth = ({ ...props }) => {
   const { isAuthenticated } = useAuth0();
-  console.log(isAuthenticated);
   return isAuthenticated ? <Link {...props}></Link> : null;
 };
+
 export const LogInOut = ({ ...props }) => {
   const { loginWithPopup, logout, isAuthenticated } = useAuth0();
   return isAuthenticated ? (
